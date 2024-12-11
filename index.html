@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mavi Kalem Kütüphanesi</title>
+    <style>
+        /* Genel Stili burada  */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* Header bölümü burada */
+        header {
+            background: #191862;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Navbar bölümü burada */
+        .navbar {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .navbar img {
+            margin-right: 15px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Sliders bölümü burada */
+
+        .w3-content {
+            position: relative;
+            max-width: 100%;
+        }
+
+        .mySlides {
+            display: none;
+            width: 100%;
+        }
+
+        .w3-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .w3-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .w3-display-left {
+            left: 10px;
+        }
+
+        .w3-display-right {
+            right: 10px;
+        }
+
+
+        /* Bölüm Başlıkları bölümü burası */
+        section {
+            padding: 20px 0;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #191862;
+            font-size: 40px;
+        }
+
+        /* Kitaplar Bölümü bura  */
+        .books {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .book-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .book-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .book-card h3 {
+            padding: 10px;
+            font-size: 18px;
+            background: #191862;
+            color: white;
+            text-align: center;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Özet tıklaa*/
+        .summary-box {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 5px solid #ccc;
+            margin-top: 10px;
+            font-size: 14px;
+            border-radius: 3px;
+        }
+
+        .book-card button {
+            margin-top: 10px;
+            background-color: #191862;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .book-card button:hover {
+            background-color: #3c3c3c;
+        }
+
+        /* Hakkımızda Bölümü */
+        #about {
+            background-color: #f9f9f9;
+            padding: 50px 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #about .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: justify;
+        }
+
+        #about h2 {
+            font-size: 2rem;
+            color: #191862;
+            text-align: left;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        #about p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        #about .about,
+        #about .misyon,
+        #about .vizyon {
+            max-width: 1800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: justify;
+        }
+
+        @media (max-width: 768px) {
+            #about .container {
+                width: 90%;
+            }
+
+            #about h2 {
+                font-size: 1.5rem;
+            }
+
+            #about p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Resimler Bölümü */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+
+        /* İletişim Bölümü */
+        #contact {
+            background-color: #f9f9f9;
+            padding: 40px 0;
+            text-align: left;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #contact .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 50 auto;
+        }
+
+        #contact h2 {
+            text-align: center;
+            color: #191862;
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+
+        .contact-info {
+            margin-bottom: 30px;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #191862;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            background-color: #191862;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #333;
+        }
+
+
+        /* Footer */
+        footer {
+            background: #191862;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container navbar">
+            <img src="https://cdn-icons-png.flaticon.com/512/4002/4002041.png" alt="Kütüphane Logomuz" width="100px">
+            <h1 class="logo">MAVİ KALEM KÜTÜPHANESİ</h1>
+            <ul class="nav-links">
+                <li><a href="#books">Kitaplarımız</a></li>
+                <li><a href="#about">Hakkımızda</a></li>
+                <li><a href="#gallery">Resimler</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+    <div class="w3-content w3-display-container">
+        <img class="mySlides"
+            src="https://images.pexels.com/photos/9214465/pexels-photo-9214465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+        <img class="mySlides"
+            src="https://images.pexels.com/photos/27549599/pexels-photo-27549599/free-photo-of-kent-sehir-insanlar-kent-simgesi.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+        <img class="mySlides"
+            src="https://images.pexels.com/photos/6334419/pexels-photo-6334419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+        <img class="mySlides"
+            src="https://images.pexels.com/photos/2041540/pexels-photo-2041540.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+
+        <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-button w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+
+    <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = x.length }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+    </script>
+
+    <div class="hero">
+
+    </div>
+
+
+    <section id="books">
+        <div class="container">
+            <h2>Kitaplarımız</h2>
+            <div class="books">
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0000000061424-1.jpg" alt="Kitap 1">
+                    <h3>TUTUNAMAYANLAR</h3>
+                    <button onclick="showSummary('summary1')">Kitap Özeti</button>
+                    <div id="summary1" class="summary-box" style="display: none;">
+                        Oğuz Atay'ın en önemli eserlerinden biri olan "Tutunamayanlar", modern insanın yaşadığı
+                        yabancılaşmayı ve tutunamama hissini ele alır.
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0000000058246-1.jpg" alt="Kitap 2">
+                    <h3>İÇİMİZDEKİ ŞEYTAN</h3>
+                    <button onclick="showSummary('summary2')">Kitap Özeti</button>
+                    <div id="summary2" class="summary-box" style="display: none;">
+                        Sabahattin Ali'nin "İçimizdeki Şeytan" adlı romanı, insanın içindeki kötülükle mücadelesini ve
+                        toplumsal baskıları konu alır.
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0000000064552-1.jpg" alt="Kitap 3">
+                    <h3>SİMYACI</h3>
+                    <button onclick="showSummary('summary3')">Kitap Özeti</button>
+                    <div id="summary3" class="summary-box" style="display: none;">
+                        Paulo Coelho'nun "Simyacı" romanı, kişinin kendi kaderini keşfetme yolculuğunu anlatan
+                        büyüleyici bir hikayedir.
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0000000347422-1.jpg" alt="Kitap 4">
+                    <h3>BEYAZ DİŞ</h3>
+                    <button onclick="showSummary('summary4')">Kitap Özeti</button>
+                    <div id="summary4" class="summary-box" style="display: none;">
+                        Jack London'ın "Beyaz Diş" romanı, doğanın acımasızlığı içinde bir kurdun yaşam mücadelesini
+                        konu alır.
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0000000064031-1.jpg" alt="Kitap 5">
+                    <h3>ŞEKER PORTAKALI</h3>
+                    <button onclick="showSummary('summary5')">Kitap Özeti</button>
+                    <div id="summary5" class="summary-box" style="display: none;">
+                        José Mauro de Vasconcelos'un "Şeker Portakalı" eseri, küçük bir çocuğun masum hayallerini ve acı
+                        gerçekleri keşfedişini anlatır.
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0000000105409-1.jpg" alt="Kitap 6">
+                    <h3>HAYVAN ÇİFTLİĞİ</h3>
+                    <button onclick="showSummary('summary6')">Kitap Özeti</button>
+                    <div id="summary6" class="summary-box" style="display: none;">
+                        George Orwell'in "Hayvan Çiftliği" romanı, politik hiciv tarzında yazılmış bir fabldır ve
+                        totaliter rejimlerin eleştirisini yapar.
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0002136333001-1.jpg" alt="Kitap 7">
+                    <h3>ÇALIKUŞU</h3>
+                    <button onclick="showSummary('summary7')">Kitap Özeti</button>
+                    <div id="summary7" class="summary-box" style="display: none;">
+                        Reşat Nuri Güntekin'in "Çalıkuşu" romanı, öğretmen Feride'nin hayat hikayesini ve zorluklara
+                        karşı direnişini konu alır.
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0001703855001-1.jpg" alt="Kitap 8">
+                    <h3>MUTLU PRENS</h3>
+                    <button onclick="showSummary('summary8')">Kitap Özeti</button>
+                    <div id="summary8" class="summary-box" style="display: none;">
+                        Oscar Wilde'ın "Mutlu Prens" eseri, fedakarlık ve sevginin gücünü anlatan bir masaldır.
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0000000064464-1.jpg" alt="Kitap 9">
+                    <h3>YABANCI</h3>
+                    <button onclick="showSummary('summary9')">Kitap Özeti</button>
+                    <div id="summary9" class="summary-box" style="display: none;">
+                        Albert Camus'nün "Yabancı" romanı, varoluşçuluk temalarını ele alan çarpıcı bir eserdir.
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0000000222780-1.jpg" alt="Kitap 10">
+                    <h3>SUÇ VE CEZA</h3>
+                    <button onclick="showSummary('summary10')">Kitap Özeti</button>
+                    <div id="summary10" class="summary-box" style="display: none;">
+                        Fyodor Dostoyevski'nin "Suç ve Ceza" romanı, ahlaki sorgulamaları ve insan psikolojisini
+                        derinlemesine işler.
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0001719411001-1.jpg" alt="Kitap 11">
+                    <h3>AYLAK ADAM</h3>
+                    <button onclick="showSummary('summary11')">Kitap Özeti</button>
+                    <div id="summary11" class="summary-box" style="display: none;">
+                        Aylak Adam eseriyle toplumsal ve kişisel sorunları ele alan Yusuf Atılgan, okuyucuya 
+                        psikolojik öğeler barındıran bir anlatım sunuyor. 
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0000000202084-1.jpg" alt="Kitap 12">
+                    <h3>GURUR VE ÖNYARGI</h3>
+                    <button onclick="showSummary('summary12')">Kitap Özeti</button>
+                    <div id="summary12" class="summary-box" style="display: none;">
+                        1813'de yayınlanan ikinci romanı Gurur ve Önyargı tüm zamanların en sevilen romanlarının başında gelir.
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0001949549001-1.jpg" alt="Kitap 13">
+                    <h3>SERENAD</h3>
+                    <button onclick="showSummary('summary13')">Kitap Özeti</button>
+                    <div id="summary13" class="summary-box" style="display: none;">
+                        Yaklaşık 800 Yahudi mültecinin kendilerini Filistin’e taşıyan geminin Türkiye kıyılarında 
+                        torpidolanması sonucu hayatını kaybettiği 1942 Struma felaketinden esinlenmiştir.
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0002053536001-1.jpg" alt="Kitap 14">
+                    <h3>SATRANÇ</h3>
+                    <button onclick="showSummary('summary14')">Kitap Özeti</button>
+                    <div id="summary14" class="summary-box" style="display: none;">
+                        Satranç, Zweig’ın novella türünde eriştiği ustalığı gözler önüne seren en son yapıtı
+                    </div>
+                </div>
+                <div class="book-card">
+                    <img src="https://i.dr.com.tr/cache/500x400-0/originals/0000000644939-1.jpg" alt="Kitap 15">
+                    <h3>DENİZ FENERİ</h3>
+                    <button onclick="showSummary('summary15')">Kitap Özeti</button>
+                    <div id="summary15" class="summary-box" style="display: none;">
+                        İngiliz edebiyatının başyapıtlarından biri olan Deniz Feneri, son derece basit olay örgüsünün ardında yaratıcısının özyaşamının ayrıntılarını, 
+                        toplumsal meselelere ilişkin sorgulamalarını, içgözlemlerini ve derin felsefi gizemleri barındırır.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function showSummary(id) {
+            const summaryBox = document.getElementById(id);
+            // Eğer özet kutucuğu görünüyorsa gizle, değilse göster
+            if (summaryBox.style.display === "none") {
+                summaryBox.style.display = "block";
+            } else {
+                summaryBox.style.display = "none";
+            }
+        }
+    </script>
+
+    <section id="about">
+        <div class="container">
+            <h2>Hakkımızda:</h2>
+            <p class="about">
+                Mavi Kalem Kütüphanesi, 2024 yılında bilgiye olan erişimi kolaylaştırmak ve kitap severlerin hayallerine
+                ortak olmak amacıyla kuruldu.
+                Kütüphanemiz, teknolojiyi ve geleneksel kitap sevgisini bir arada sunarak herkesin bilgiye ulaşabileceği
+                sıcak ve modern bir ortam yaratmayı hedeflemektedir.
+                Kütüphane koleksiyonumuz; edebiyattan bilime, sanattan tarihe kadar geniş bir yelpazeyi kapsamakta ve
+                sürekli genişlemektedir.
+                Çocuklar, gençler ve yetişkinler için düzenlediğimiz etkinlikler, atölyeler ve okuma grupları ile
+                kütüphanemiz sadece bir kitap deposu değil, aynı zamanda bir kültür ve öğrenme merkezidir.
+                Bugün, Mavi Kalem Kütüphanesi olarak, yerel halkın kültürel ve entelektüel gelişimine katkıda
+                bulunmaktan gurur duyuyoruz.
+            </p>
+
+            <h2>Misyonumuz:</h2>
+            <p class="misyon">
+                Mavi Kalem Kütüphanesi olarak, herkesin bilgiye eşit erişimini sağlamayı, bireylerin öğrenme ve
+                yaratıcılık potansiyelini artırmayı ve kültürel zenginlikleri topluma kazandırmayı kendimize misyon
+                edindik.
+                Kitapların büyülü dünyasında yolculuk yapmak isteyen herkese kapılarımızı açık tutuyor, okuyucularımızın
+                ihtiyaçlarına modern çözümlerle yanıt veriyoruz.
+            </p>
+
+            <h2>Vizyonumuz:</h2>
+            <p class="vizyon">
+                Mavi Kalem Kütüphanesi, gelecekte dijital dönüşüm ve sürdürülebilir kütüphane hizmetleri konusunda örnek
+                bir model olmayı hedeflemektedir.
+                Topluma ilham veren, kültürel değerleri koruyan ve yeni nesillere bilgi aktarımını kolaylaştıran bir
+                bilgi merkezi olma yolunda ilerliyoruz.
+                Amacımız, kitaplarla insanların bağını güçlendirmek ve öğrenmeyi yaşam boyu bir alışkanlık haline
+                getirmektir.
+            </p>
+        </div>
+    </section>
+
+
+
+    <section id="gallery">
+        <div class="container">
+            <h2>Kütüphanemizden Resimler</h2>
+            <div class="gallery">
+                <img src="https://www.aaschool.ac.uk/assets/microsoftteams-image-(30).png" alt="Resim 1">
+                <img src="https://icam-web.org/wp-content/uploads/2019/07/Library_BB_2019_04_24.jpg" alt="Resim 2">
+                <img src="https://www.bodleianbookshop.co.uk/wp-content/uploads/2018/01/20170509_Eng_Library_DJA_012_3.jpg"
+                    alt="Resim 3">
+                <img src="https://cdn.pixabay.com/video/2015/09/27/846-140823862_tiny.jpg" alt="Resim 4">
+                <img src="https://www.shutterstock.com/shutterstock/videos/1045545994/thumb/1.jpg?ip=x480"
+                    alt="Resim 5">
+                <img src="https://www.shutterstock.com/shutterstock/videos/1017618646/thumb/1.jpg?ip=x480"
+                    alt="Resim 6">
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact">
+        <div class="container">
+            <h2>İletişim</h2>
+            <div class="contact-info">
+                <p><strong>Adres:</strong> Mavi Kalem Kütüphanesi, Denizli Merkez, Türkiye</p>
+                <p><strong>Telefon:</strong> +90 (258) 123 4567</p>
+                <p><strong>E-Posta:</strong> bilgi@mavikalemkutuphane.com</p>
+            </div>
+            <form action="#" method="POST" class="contact-form">
+                <label for="name">Ad Soyad:</label>
+                <input type="text" id="name" name="name" placeholder="Adınızı giriniz" required>
+
+                <label for="email">E-Posta:</label>
+                <input type="email" id="email" name="email" placeholder="E-posta adresinizi giriniz" required>
+
+                <label for="message">Mesajınız:</label>
+                <textarea id="message" name="message" rows="4" placeholder="Mesajınızı buraya yazınız"
+                    required></textarea>
+
+                <button type="submit">Gönder</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- lokasyon görsel-->
+    <div class="w3-container">
+        <img src="https://www.w3schools.com/w3images/map.jpg" class="w3-image" style="width:100%">
+    </div>
+
+
+    <footer>
+        <p>&copy; 2024 Mavi Kalem Tüm Hakları Saklıdır.</p>
+    </footer>
+
+</body>
+
+</html>
