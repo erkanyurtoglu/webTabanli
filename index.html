@@ -625,7 +625,6 @@
     <script>
         function showSummary(id) {
             const summaryBox = document.getElementById(id);
-            // Eğer özet kutucuğu görünüyorsa gizle, değilse göster
             if (summaryBox.style.display === "none") {
                 summaryBox.style.display = "block";
             } else {
@@ -733,12 +732,12 @@
         }
 
         function showNextImage() {
-            currentIndex = (currentIndex + 1) % images.length; // Sonraki resme geç (döngüsel)
+            currentIndex = (currentIndex + 1) % images.length; 
             showImage(currentIndex);
         }
 
         function showPrevImage() {
-            currentIndex = (currentIndex - 1 + images.length) % images.length; // Önceki resme geç (döngüsel)
+            currentIndex = (currentIndex - 1 + images.length) % images.length; 
             showImage(currentIndex);
         }
 
@@ -779,9 +778,9 @@
             <br>
             <h2>İletişim</h2>
             <div class="contact-info">
-                <p><strong>Adres:</strong> Mavi Kalem Kütüphanesi, Denizli Merkez, Türkiye</p>
+                <p><strong>Adres:</strong> Pamukkale Üniversitesi Kütüphanesi, Denizli Merkez, Türkiye</p>
                 <p><strong>Telefon:</strong> +90 (258) 123 4567</p>
-                <p><strong>E-Posta:</strong> bilgi@mavikalemkutuphane.com</p>
+                <p><strong>E-Posta:</strong> bilgi@PamukkaleKutuphanesi.com</p>
             </div>
 
         </div>
