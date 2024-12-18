@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mavi Kalem Kütüphanesi</title>
+    <title>Pamukkale Üniversitesi Kütüphanesi</title>
     <style>
         /* Genel Stili burada  */
         body {
@@ -29,40 +29,31 @@
             margin: 0 auto;
         }
 
-        /* Navbar bölümü burada */
+        /* Navbar bölümü  */
         .navbar {
             display: flex;
-            justify-content: center;
-   
+            justify-content: space-between;
             align-items: center;
             position: fixed;
-   
             top: 0;
-  
             left: 50%;
- 
             transform: translateX(-50%);
-      
             width: 80%;
-   
             background-color: #191862;
-       
             z-index: 1000;
-  
             padding: 10px 20px;
- 
             border-bottom-left-radius: 15px;
-
             border-bottom-right-radius: 15px;
-
         }
 
         .navbar img {
             margin-right: 15px;
+            max-width: 80px;
+            height: auto;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             color: white;
         }
@@ -86,6 +77,33 @@
         .nav-links a:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
+
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 5px;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 5px;
+            }
+
+            .navbar .logo img {
+                max-width: 50px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .nav-links a {
+                font-size: 12px;
+                padding: 4px 6px;
+            }
+        }
+
+
+
 
 
         /* Sliders bölümü burada */
@@ -265,7 +283,63 @@
             height: 300px;
             object-fit: cover;
             border-radius: 8px;
+            cursor: pointer;
         }
+
+        /* Modal Stil */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .modal-arrow {
+            position: absolute;
+            top: 50%;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+            transform: translateY(-50%);
+        }
+
+        .arrow-left {
+            left: 20px;
+        }
+
+        .arrow-right {
+            right: 20px;
+        }
+
 
 
         /* İletişim Bölümü */
@@ -347,8 +421,8 @@
 <body>
     <header>
         <div class="container navbar">
-            <img src="https://cdn-icons-png.flaticon.com/512/4002/4002041.png" alt="Kütüphane Logomuz" width="100px">
-            <h1 class="logo">MAVİ KALEM KÜTÜPHANE</h1>
+            <img src="https://cdn.pau.edu.tr/BIYS/logo/PAUlogoTR.png" alt="Kütüphane Logomuz" width="100px">
+            <h1 class="logo">PAMUKKALE ÜNİVERSİTESİ KÜTÜPHANESİ</h1>
             <ul class="nav-links">
                 <li><a href="#books">Kitaplarımız</a></li>
                 <li><a href="#about">Hakkımızda</a></li>
@@ -361,13 +435,13 @@
 
     <div class="w3-content w3-display-container">
         <img class="mySlides"
-            src="https://images.pexels.com/photos/9214465/pexels-photo-9214465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+            src="https://haber.pau.edu.tr/Content/newsimg/414643//xl_23306e60-19c7-4835-87f3-0ed2edd1911d.JPG">
         <img class="mySlides"
-            src="https://images.pexels.com/photos/27549599/pexels-photo-27549599/free-photo-of-kent-sehir-insanlar-kent-simgesi.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+            src="https://temadil.com/images/blogs/Pamukkale%20%C3%9Cniversitesi%20%C4%B0ngilizce%20Yeterlik%20S%C4%B1nav%C4%B1%20Hakk%C4%B1nda%20Bilgi_669a579f20452.jpg">
         <img class="mySlides"
-            src="https://images.pexels.com/photos/6334419/pexels-photo-6334419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+            src="https://haber.pau.edu.tr/Content/newsimg/kutuphane-buyudu-hizmetler-artti/xl_af38089e-a492-4505-9c5e-d78d180ce3e7.JPG">
         <img class="mySlides"
-            src="https://images.pexels.com/photos/2041540/pexels-photo-2041540.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+            src="https://haber.pau.edu.tr/Content/newsimg/kutuphane-buyudu-hizmetler-artti/xl_2fc31dc2-03f0-49d1-9979-f3d556d5a9f9.JPG">
 
         <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
         <button class="w3-button w3-display-right" onclick="plusDivs(1)">&#10095;</button>
@@ -391,7 +465,13 @@
             }
             x[slideIndex - 1].style.display = "block";
         }
+
+
+        setInterval(function () {
+            plusDivs(1);  
+        }, 2000);
     </script>
+
 
     <div class="hero">
 
@@ -400,6 +480,8 @@
 
     <section id="books">
         <div class="container">
+            <br>
+            <br>
             <h2>Kitaplarımız</h2>
             <div class="books">
                 <div class="book-card">
@@ -554,37 +636,44 @@
 
     <section id="about">
         <div class="container">
+            <br>
+            <br>
             <h2>Hakkımızda:</h2>
             <p class="about">
-                Mavi Kalem Kütüphanesi, 2024 yılında bilgiye olan erişimi kolaylaştırmak ve kitap severlerin hayallerine
-                ortak olmak amacıyla kuruldu.
-                Kütüphanemiz, teknolojiyi ve geleneksel kitap sevgisini bir arada sunarak herkesin bilgiye ulaşabileceği
-                sıcak ve modern bir ortam yaratmayı hedeflemektedir.
-                Kütüphane koleksiyonumuz; edebiyattan bilime, sanattan tarihe kadar geniş bir yelpazeyi kapsamakta ve
-                sürekli genişlemektedir.
-                Çocuklar, gençler ve yetişkinler için düzenlediğimiz etkinlikler, atölyeler ve okuma grupları ile
-                kütüphanemiz sadece bir kitap deposu değil, aynı zamanda bir kültür ve öğrenme merkezidir.
-                Bugün, Mavi Kalem Kütüphanesi olarak, yerel halkın kültürel ve entelektüel gelişimine katkıda
-                bulunmaktan gurur duyuyoruz.
+                Pamukkale Üniversitesi Prof. Dr. Fuat Sezgin Kütüphanesi, 1992 yılında 4000 kitapla hizmet vermeye
+                başlamış ve Eğitim Fakültesi
+                koleksiyonunun devriyle koleksiyonu 8000 kitaba çıkarmıştır. İlk otomasyon sistemi olarak BILISS-PC
+                alınmış ve bu sistemle
+                kataloglama işlemleri yapılmıştır. 1994-2000 yılları arasında kütüphane, bibliyografik ve tam metin
+                veritabanları kullanarak hizmet sunmuştur.
+                2000 yılında, kütüphane yeni binasına taşınmış ve online veritabanı aboneliklerine başlanmıştır. Bu
+                dönemde kütüphane otomasyon sistemi güncellenerek
+                BLISS-PC WEB modülüne geçilmiştir. 2002'de, uluslararası kataloglama standartlarına uyulmuş ve CatME ile
+                CORC programları kullanılarak veriler OCLC WorldCAT
+                gibi ağlara aktarılmıştır. 2007'de kütüphane, yeni yerine taşınarak online veri tabanı abonelikleri
+                artırılmıştır. YÖK’ün önerisiyle, Tıp ve Mühendislik
+                Fakülteleri kütüphanelerindeki koleksiyonlar da sisteme dahil edilmiştir. 2008 yılında kalite
+                çalışmaları başlatılmış, sayısallaştırma işlemleri OCLC ContentDM
+                programıyla yapılmaya başlanmıştır. 2012'de, kütüphane otomasyon sistemi SirsiDynix Symphony WorkFlows’a
+                geçmiştir.
             </p>
 
             <h2>Misyonumuz:</h2>
             <p class="misyon">
-                Mavi Kalem Kütüphanesi olarak, herkesin bilgiye eşit erişimini sağlamayı, bireylerin öğrenme ve
-                yaratıcılık potansiyelini artırmayı ve kültürel zenginlikleri topluma kazandırmayı kendimize misyon
-                edindik.
-                Kitapların büyülü dünyasında yolculuk yapmak isteyen herkese kapılarımızı açık tutuyor, okuyucularımızın
-                ihtiyaçlarına modern çözümlerle yanıt veriyoruz.
+                Pamukkale Üniversitesi Prof. Dr. Fuat SEZGİN Kütüphanesi olarak amacımız, bilgiye ulaşımın
+                kolaylaştırılması ve
+                yaygınlaştırılması doğrultusunda, öğretim ve araştırma faaliyetleri için en kısa zamanda doğru ve
+                gerekli kaynaklara çağdaş
+                imkânlarla ulaşılmasını sağlamak, öğrenci ve araştırmacılarımıza çalışmalarında destek olmak ve tüm
+                kullanıcılarımızın bilgi
+                donanımlarının artmasına zemin hazırlamaktır.
             </p>
 
             <h2>Vizyonumuz:</h2>
             <p class="vizyon">
-                Mavi Kalem Kütüphanesi, gelecekte dijital dönüşüm ve sürdürülebilir kütüphane hizmetleri konusunda örnek
-                bir model olmayı hedeflemektedir.
-                Topluma ilham veren, kültürel değerleri koruyan ve yeni nesillere bilgi aktarımını kolaylaştıran bir
-                bilgi merkezi olma yolunda ilerliyoruz.
-                Amacımız, kitaplarla insanların bağını güçlendirmek ve öğrenmeyi yaşam boyu bir alışkanlık haline
-                getirmektir.
+                Kütüphanemiz, sürekli gelişmeyi, kaliteyi, güncel teknolojik gelişmelere uygunluğu, ve paylaşımı esas
+                alan bir anlayışla
+                kullanıcılarımızın taleplerine hızlı ve doğru bir şekilde cevap verebilmeyi vizyon edinmiştir.
             </p>
         </div>
     </section>
@@ -593,24 +682,101 @@
 
     <section id="gallery">
         <div class="container">
+            <br>
+            <br>
+            <br>
             <h2>Kütüphanemizden Resimler</h2>
             <div class="gallery">
-                <img src="https://www.aaschool.ac.uk/assets/microsoftteams-image-(30).png" alt="Resim 1">
-                <img src="https://icam-web.org/wp-content/uploads/2019/07/Library_BB_2019_04_24.jpg" alt="Resim 2">
-                <img src="https://www.bodleianbookshop.co.uk/wp-content/uploads/2018/01/20170509_Eng_Library_DJA_012_3.jpg"
-                    alt="Resim 3">
-                <img src="https://cdn.pixabay.com/video/2015/09/27/846-140823862_tiny.jpg" alt="Resim 4">
-                <img src="https://www.shutterstock.com/shutterstock/videos/1045545994/thumb/1.jpg?ip=x480"
+                <img src="https://pbs.twimg.com/media/D39MnkRWwAYakqL?format=jpg&name=large" alt="Resim 1">
+                <img src="https://haber.pau.edu.tr/Content/newsimg/kutuphane-acildi-foto-galeri//xl_1f1bc776-0350-492e-88e9-ffcb3880b8c2.JPG"
+                    alt="Resim 2">
+                <img src="https://pbs.twimg.com/media/Dj6ciC2W0AAYUe-.jpg" alt="Resim 3">
+                <img src="https://bukalemun.pusula.pau.edu.tr/upload/BIYS/siteler/isletme/editor/WhatsApp%20Image%202024-07-03%20at%2012.53.26.jpeg"
+                    alt="Resim 4">
+                <img src="https://bukalemun.pusula.pau.edu.tr/upload/BIYS/siteler/isletme/editor/WhatsApp%20Image%202024-07-03%20at%2012.53.26%20(2).jpeg"
                     alt="Resim 5">
-                <img src="https://www.shutterstock.com/shutterstock/videos/1017618646/thumb/1.jpg?ip=x480"
+                <img src="https://haber.pau.edu.tr/Content/newsimg/kutuphane-buyudu-hizmetler-artti/xl_2fc31dc2-03f0-49d1-9979-f3d556d5a9f9.JPG"
                     alt="Resim 6">
             </div>
         </div>
     </section>
 
 
+    <!-- Modal -->
+    <div id="galleryModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <span class="modal-arrow arrow-left">&#10094;</span>
+        <span class="modal-arrow arrow-right">&#10095;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Galeri Resmi">
+        </div>
+    </div>
+
+    <!-- JavaScript Kodları -->
+    <script>
+        const modal = document.getElementById("galleryModal");
+        const modalImage = document.getElementById("modalImage");
+        const closeModal = document.querySelector(".modal-close");
+        const arrowLeft = document.querySelector(".arrow-left");
+        const arrowRight = document.querySelector(".arrow-right");
+        const images = Array.from(document.querySelectorAll(".gallery img"));
+        let currentIndex = 0;
+
+        function showImage(index) {
+            currentIndex = index;
+            modalImage.src = images[currentIndex].src;
+            modal.style.display = "flex";
+        }
+
+        function closeModalHandler() {
+            modal.style.display = "none";
+        }
+
+        function showNextImage() {
+            currentIndex = (currentIndex + 1) % images.length; // Sonraki resme geç (döngüsel)
+            showImage(currentIndex);
+        }
+
+        function showPrevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length; // Önceki resme geç (döngüsel)
+            showImage(currentIndex);
+        }
+
+        images.forEach((img, index) => {
+            img.addEventListener("click", () => showImage(index));
+        });
+
+        closeModal.addEventListener("click", closeModalHandler);
+
+        arrowRight.addEventListener("click", showNextImage);
+        arrowLeft.addEventListener("click", showPrevImage);
+
+        document.addEventListener("keydown", (e) => {
+            if (modal.style.display === "flex") {
+                if (e.key === "ArrowRight") {
+                    showNextImage();
+                } else if (e.key === "ArrowLeft") {
+                    showPrevImage();
+                } else if (e.key === "Escape") {
+                    closeModalHandler();
+                }
+            }
+        });
+
+
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                closeModalHandler();
+            }
+        });
+    </script>
+
+
     <section id="contact">
         <div class="container">
+            <br>
+            <br>
+            <br>
             <h2>İletişim</h2>
             <div class="contact-info">
                 <p><strong>Adres:</strong> Mavi Kalem Kütüphanesi, Denizli Merkez, Türkiye</p>
@@ -622,13 +788,13 @@
     </section>
 
     <!-- lokasyon görsel-->
-    <div class="w3-container">
-        <img src="https://www.w3schools.com/w3images/map.jpg" class="w3-image" style="width:100%">
-    </div>
-
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1326.5982725863223!2d29.1027334747639!3d37.73844704179436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c64cd2bfffffff%3A0x7c21102ab89254ac!2sPamukkale%20%C3%9Cniversitesi!5e0!3m2!1str!2str!4v1734276999934!5m2!1str!2str"
+        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
 
     <footer>
-        <p>&copy; 2024 Mavi Kalem Tüm Hakları Saklıdır.</p>
+        <p>&copy; 2024 Pamukkale Üniversitesi Tüm Hakları Saklıdır.</p>
     </footer>
 
 </body>
